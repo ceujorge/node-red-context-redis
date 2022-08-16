@@ -227,9 +227,9 @@ Redis.prototype.close = function () {
 };
 
 Redis.prototype.get = function (scope, key, callback) {
-    if (typeof callback !== 'function') {
-        throw new Error('Callback must be a function');
-    }
+    //if (typeof callback !== 'function') {
+    //    throw new Error('Callback must be a function');
+    //}
     try {
         if (!Array.isArray(key)) {
             key = [key];
@@ -267,58 +267,13 @@ Redis.prototype.get = function (scope, key, callback) {
                     results.push(value);
                 }
                 callback(null, ...results);
+                console.log(results)
+                return results
             }
         });
     } catch (err) {
         callback(err);
         return;
-    }
-};
-
-Redis.prototype.get = function (scope, key) {
-    try {
-        if (!Array.isArray(key)) {
-            key = [key];
-        }
-        const mgetArgs = [];
-        // Filter duplicate keys in order to reduce response data
-        const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
-        rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
-        this.client.MGET(...mgetArgs, (err, replies) => {
-            if (err) {
-                return err;
-            } else {
-                let results = [];
-                let data = {};
-                let value;
-                for (let i = 0; i < rootKeys.length; i++) {
-                    try {
-                        if (replies[i]) {
-                            data[rootKeys[i]] = JSON.parse(replies[i]);
-                        }
-                    } catch (err) {
-                        // If data is not JSON, return `undefined`
-                        break;
-                    }
-                }
-                for (let i = 0; i < key.length; i++) {
-                    try {
-                        value = util.getObjectProperty(data, key[i]);
-                    } catch (err) {
-                        if (err.code === 'INVALID_EXPR') {
-                            throw err;
-                        }
-                        value = undefined;
-                    }
-                    console.log(value);
-                    results.push(value);
-                }
-                console.log(results)
-                return results;
-            }
-        });
-    } catch (err) {
-        return err;
     }
 };
 
@@ -417,26 +372,18 @@ Redis.prototype.set = function (scope, key, value, callback) {
 };
 
 Redis.prototype.keys = function (scope, callback) {
-    if (typeof callback !== 'function') {
-        throw new Error('Callback must be a function');
-    }
+    //if (typeof callback !== 'function') {
+    //    throw new Error('Callback must be a function');
+    //}
     scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-        callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+        let value = result.map(v => removePrefix(this.prefix, scope, v))
+        callback(null, value);
+        return value
     }).catch(err => {
         callback(err);
     });
 };
 
-Redis.prototype.keys = function (scope) {
-    let value;
-    scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-        value = result.map(v => removePrefix(this.prefix, scope, v))
-        console.log(value);
-    }).catch(err => {
-        return err;
-    });
-    return value
-};
 
 Redis.prototype.delete = function (scope) {
     return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
