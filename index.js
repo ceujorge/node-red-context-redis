@@ -150,7 +150,7 @@ function removePrefix(prefix, scope, key) {
 
 function scan(client, pattern, cursor = 0) {
     return new Promise((resolve, reject) => {
-        client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
+        await client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
             if (err) {
                 return reject(err);
             } else {
