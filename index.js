@@ -384,7 +384,7 @@ Redis.prototype.keys = function (scope, callback) {
 };
 
 
-Redis.prototype.keysSync = function (scope) {
+Redis.prototype.keys = function (scope) {
     return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
         let value = result.map(v => removePrefix(this.prefix, scope, v))
         return value;
