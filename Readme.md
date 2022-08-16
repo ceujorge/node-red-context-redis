@@ -12,7 +12,7 @@ To run this you need a Redis server running. For details see <a href="http://red
 
 1. Run the following command in your Node-RED user directory - typically `~/.node-red`
 
-    npm install git+https://github.com/node-red/node-red-context-redis
+    npm install git+https://github.com/ceujorge/node-red-context-redis
 
 1. Add a configuration in settings.js:
 
