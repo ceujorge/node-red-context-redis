@@ -375,7 +375,7 @@ Redis.prototype.keys = function (scope, callback) {
     //if (typeof callback !== 'function') {
     //    throw new Error('Callback must be a function');
     //}
-    scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+    return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
         let value = result.map(v => removePrefix(this.prefix, scope, v))
         callback(null, value);
         return value
