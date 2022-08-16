@@ -380,7 +380,8 @@ Redis.prototype.keys = function (scope, callback) {
     });
 };
 
-Redis.prototype.keys = function (scope) {
+Redis.prototype.keys = function () {
+    console.log("test");
     return "teste envio"
 };
 
