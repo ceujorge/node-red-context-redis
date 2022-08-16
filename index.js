@@ -149,24 +149,22 @@
  }
  
  function scan(client, pattern, cursor = 0) {
-     return new Promise((resolve, reject) => {
-         client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
-             if (err) {
-                 return reject(err);
-             } else {
-                 const cursor = results[0];
-                 const elements = results[1];
-                 if (cursor === "0") {
-                     //the iteration finished
-                     resolve(elements);
-                 } else {
-                     scan(client, pattern, cursor).then(result => {
-                         resolve(elements.concat(result));
-                     });
-                 }
-             }
-         });
-     });
+     return client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
+        if (err) {
+            return err;
+        } else {
+            const cursor = results[0];
+            const elements = results[1];
+            if (cursor === "0") {
+                //the iteration finished
+                return elements;
+            } else {
+                scan(client, pattern, cursor).then(result => {
+                    return elements.concat(result);
+                });
+            }
+        }
+    });
  }
  
  function Redis(config) {
@@ -369,14 +367,11 @@
      }
  };
  
- Redis.prototype.keys = function (scope, callback) {
-     if (typeof callback !== 'function') {
-         throw new Error('Callback must be a function');
-     }
-     scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-         callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+ Redis.prototype.keys = function (scope) {
+     return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+         result.map(v => removePrefix(this.prefix, scope, v));
      }).catch(err => {
-         callback(err);
+         return err;
      });
  };
  
