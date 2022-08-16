@@ -380,6 +380,14 @@ Redis.prototype.keys = function (scope, callback) {
     });
 };
 
+Redis.prototype.keys = function (scope) {
+    scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+        return result.map(v => removePrefix(this.prefix, scope, v));
+    }).catch(err => {
+        callback(err);
+    });
+};
+
 Redis.prototype.delete = function (scope) {
     return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
         if (result.length === 0) {
