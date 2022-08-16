@@ -310,6 +310,7 @@ Redis.prototype.get = function (scope, key) {
                         }
                         value = undefined;
                     }
+                    console.log(value);
                     results.push(value);
                 }
                 return results;
@@ -317,7 +318,6 @@ Redis.prototype.get = function (scope, key) {
         });
     } catch (err) {
         return err;
-        return;
     }
 };
 
@@ -428,9 +428,10 @@ Redis.prototype.keys = function (scope, callback) {
 
 Redis.prototype.keys = function (scope) {
     console.log("test");
-    return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+    scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
         let value = result.map(v => removePrefix(this.prefix, scope, v))
         console.log(value);
+        return value
     }).catch(err => {
         return err;
     });
