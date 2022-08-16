@@ -150,7 +150,7 @@ function removePrefix(prefix, scope, key) {
 
 function scan(client, pattern, cursor = 0) {
     return new Promise((resolve, reject) => {
-        await client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
+        client.SCAN(cursor, 'MATCH', pattern, 'COUNT', 1000, (err, results) => {
             if (err) {
                 return reject(err);
             } else {
@@ -372,15 +372,24 @@ Redis.prototype.set = function (scope, key, value, callback) {
 };
 
 Redis.prototype.keys = function (scope, callback) {
-    //if (typeof callback !== 'function') {
-    //    throw new Error('Callback must be a function');
-    //}
-    return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+    if (typeof callback !== 'function') {
+        throw new Error('Callback must be a function');
+    }
+    scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
         let value = result.map(v => removePrefix(this.prefix, scope, v))
         callback(null, value);
-        return value
     }).catch(err => {
         callback(err);
+    });
+};
+
+
+Redis.prototype.keysSync = function (scope) {
+    return scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
+        let value = result.map(v => removePrefix(this.prefix, scope, v))
+        return value;
+    }).catch(err => {
+        return err;
     });
 };
 
