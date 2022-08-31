@@ -270,7 +270,7 @@
                      results.push(value);
                  }
                  
-                 callback(null, ...results);
+                 callback(null, results);
                  
              }
          });
