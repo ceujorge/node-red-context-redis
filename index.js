@@ -285,6 +285,7 @@
         while(v2 === undefined) {
             require('deasync').sleep(100);
           }
+          console.log("depois"+v2)
 
         valor2 = v2
     }
