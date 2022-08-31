@@ -273,9 +273,9 @@
 
                  console.log(results)
 
-                 value2 = results
+                 //value2 = results
                  
-                 //callback(null, ...results);
+                 callback(null, ...results);
                  
                  
              }
