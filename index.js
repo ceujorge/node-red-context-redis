@@ -231,7 +231,6 @@
          throw new Error('Callback must be a function');
      }
      callback = retorno;
-     var value2 = [];
      try {
          if (!Array.isArray(key)) {
              key = [key];
@@ -269,13 +268,8 @@
                      }
                      results.push(value);
                  }
-
-                 //console.log(results)
-
-                 //value2 = results
                  
                  callback(null, ...results);
-                 
                  
              }
          });
@@ -284,14 +278,14 @@
          return;
      }
 
-     function retorno (v1,v2)
-     {
+    function retorno (v1,v2)
+    {
         console.log(v2)
-        value2 = v2; 
+
         return v2
-     }
+    }
      
-     return value2
+    return "teste"
  };
  
  Redis.prototype.set = function (scope, key, value, callback) {
