@@ -282,13 +282,13 @@
     function retorno (v1,v2)
     {
         console.log(v2)
-        while(v2 === undefined) {
-            require('deasync').sleep(100);
-          }
-          console.log("depois"+v2)
 
         valor2 = v2
     }
+
+    while(valor2 === undefined) {
+        require('deasync').sleep(100);
+      }
      
     return valor2
  };
