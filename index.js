@@ -238,7 +238,7 @@
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
-         await this.client.MGET(...mgetArgs, (err, replies) => {
+         this.client.MGET(...mgetArgs, (err, replies) => {
              if (err) {
                  callback(err);
              } else {
