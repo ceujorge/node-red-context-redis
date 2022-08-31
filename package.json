@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A Node-RED Context store plugin backed by Redis",
   "type": "module",
-  "main": "index.cjs",
+  "main": "index.js",
   "scripts": {
     "test": "nyc --cache mocha ./test/_spec.js --timeout=8000",
     "coverage": "nyc report --reporter=lcov --reporter=html"
@@ -16,7 +16,8 @@
   "dependencies": {
     "@node-red/util": "0.20.0-beta.2",
     "json-stringify-safe": "^5.0.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "deasync":"^0.1.28"
   },
   "devDependencies": {
     "mocha": "^5.2.0",

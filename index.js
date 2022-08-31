@@ -282,6 +282,9 @@
     function retorno (v1,v2)
     {
         console.log(v2)
+        while(v2 === undefined) {
+            require('deasync').sleep(100);
+          }
 
         valor2 = v2
     }
