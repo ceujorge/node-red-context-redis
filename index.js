@@ -271,6 +271,7 @@
                  }
                  
                 callback(null, ...results);
+                return;
                  
              }
          });
@@ -284,12 +285,11 @@
         valor2 = v2
     }
 
-    if (typeof callback !== 'function') {
-        while(valor2 === undefined) {
-            require('deasync').sleep(5);
-          }
-        return valor2
-     }
+    while(valor2 === undefined) {
+        require('deasync').sleep(5);
+        }
+    return valor2
+
  };
  
  Redis.prototype.set = function (scope, key, value, callback) {
