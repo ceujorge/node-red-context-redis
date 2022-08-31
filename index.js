@@ -241,7 +241,7 @@
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
-         this.client.MGET(...mgetArgs, (err, replies) => {
+         await this.client.MGET(...mgetArgs, async (err, replies) => {
              if (err) {
                  callback(err);
              } else {
@@ -270,7 +270,7 @@
                      results.push(value);
                  }
                  
-                await callback(null, ...results);
+                callback(null, ...results);
                  
              }
          });
@@ -279,7 +279,7 @@
          return;
      }
 
-    return async function retorno (v1,v2)
+    return function retorno (v1,v2)
     {
         console.log(v2)
 
