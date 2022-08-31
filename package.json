@@ -2,6 +2,7 @@
   "name": "node-red-context-redis",
   "version": "0.0.1",
   "description": "A Node-RED Context store plugin backed by Redis",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "nyc --cache mocha ./test/_spec.js --timeout=8000",
