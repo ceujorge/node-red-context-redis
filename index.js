@@ -270,7 +270,7 @@
                      results.push(value);
                  }
                  
-                 callback(null, results);
+                await callback(null, ...results);
                  
              }
          });
@@ -279,7 +279,7 @@
          return;
      }
 
-    return await function retorno (v1,v2)
+    return async function retorno (v1,v2)
     {
         console.log(v2)
 
