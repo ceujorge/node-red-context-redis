@@ -230,7 +230,7 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
-     let value2;
+     var value2 = [];
      try {
          if (!Array.isArray(key)) {
              key = [key];
