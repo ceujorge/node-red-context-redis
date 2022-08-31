@@ -227,7 +227,7 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
-     if (typeof callback !== 'function') {
+     if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
      try {
@@ -267,6 +267,8 @@
                      results.push(value);
                  }
                  callback(null, ...results);
+                 return results
+                 
              }
          });
      } catch (err) {
@@ -373,13 +375,10 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
-     let valor;
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-        return result.map(v => removePrefix(this.prefix, scope, v))
-         //await callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+         callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
      }).catch(err => {
-        return err
-        await callback(err);
+        callback(err);
      });
  };
  
