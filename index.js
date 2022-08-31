@@ -287,10 +287,10 @@
 
      function retorno (v1,v2)
      {
-        v2 = value2
+        console.log(v2)
+        value2 = v2; 
      }
      
-     console.log(value2)
      return value2
  };
  
