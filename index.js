@@ -227,10 +227,10 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
-     if (callback && typeof callback !== 'function') {
-         throw new Error('Callback must be a function');
+     if (typeof callback !== 'function') {
+        callback = retorno;;
      }
-     callback = retorno;
+    
      var valor2;
      try {
          if (!Array.isArray(key)) {
@@ -281,13 +281,11 @@
 
     function retorno (v1,v2)
     {
-        console.log(v2)
-
         valor2 = v2
     }
 
     while(valor2 === undefined) {
-        require('deasync').sleep(100);
+        require('deasync').sleep(5);
       }
      
     return valor2
