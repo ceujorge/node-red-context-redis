@@ -369,7 +369,7 @@
      }
  };
  
- Redis.prototype.keys = await function (scope, callback) {
+ Redis.prototype.keys = async function (scope, callback) {
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
