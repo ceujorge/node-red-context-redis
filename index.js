@@ -369,14 +369,14 @@
      }
  };
  
- Redis.prototype.keys = async function (scope, callback) {
+ Redis.prototype.keys = function (scope, callback) {
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-         callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+         await callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
      }).catch(err => {
-        callback(err);
+        await callback(err);
      });
  };
  
