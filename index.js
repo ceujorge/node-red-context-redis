@@ -234,6 +234,7 @@
          if (!Array.isArray(key)) {
              key = [key];
          }
+         let value2;
          const mgetArgs = [];
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
@@ -268,6 +269,8 @@
                  }
 
                  console.log(results)
+
+                 value2 = results
                  
                  callback(null, ...results);
                  
@@ -279,11 +282,7 @@
          return;
      }
 
-     return function callback(v1,v2)
-     {
-        console.log(v2)
-        return v2
-     }
+     return value2
  };
  
  Redis.prototype.set = function (scope, key, value, callback) {
