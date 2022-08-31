@@ -30,6 +30,6 @@
     "redis"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=14"
   }
 }
