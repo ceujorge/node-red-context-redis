@@ -226,7 +226,7 @@
      });
  };
  
- Redis.prototype.get = async function (scope, key, callback) {
+ Redis.prototype.get = function (scope, key, callback) {
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
@@ -240,10 +240,7 @@
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
          this.client.MGET(...mgetArgs, (err, replies) => {
              if (err) {
-                if(typeof callback !== 'function')
-                    return err
-                else
-                    callback(err);
+                 callback(err);
              } else {
                  let results = [];
                  let data = {};
@@ -270,20 +267,15 @@
                      results.push(value);
                  }
 
-                if(typeof callback !== 'function')
-                    return results
-                else
-                    callback(results);
+                 console.log(results)
+                 return results
+                 callback(null, ...results);
                  
                  
              }
          });
      } catch (err) {
-        if(typeof callback !== 'function')
-            return err
-        else
-            callback(err);
-
+         callback(err);
          return;
      }
  };
