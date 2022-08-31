@@ -280,7 +280,7 @@
          return;
      }
 
-    return function retorno (v1,v2)
+    function retorno (v1,v2)
     {
         console.log(v2)
 
