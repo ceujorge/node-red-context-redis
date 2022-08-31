@@ -279,14 +279,14 @@
          return;
      }
 
-    function retorno (v1,v2)
+    return await function retorno (v1,v2)
     {
         console.log(v2)
 
         valor2 = v2
     }
      
-    return valor2
+    //return valor2
  };
  
  Redis.prototype.set = function (scope, key, value, callback) {
