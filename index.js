@@ -268,7 +268,7 @@
                  }
 
                  console.log(results)
-                 return results
+                 
                  callback(null, ...results);
                  
                  
@@ -277,6 +277,12 @@
      } catch (err) {
          callback(err);
          return;
+     }
+
+     return function callback(v1,v2)
+     {
+        console.log(v2)
+        return v2
      }
  };
  
