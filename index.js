@@ -226,7 +226,7 @@
      });
  };
  
- Redis.prototype.get = function (scope, key, callback) {
+ Redis.prototype.get = async function (scope, key, callback) {
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
