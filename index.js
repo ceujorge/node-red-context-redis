@@ -230,11 +230,12 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
+     let value2;
      try {
          if (!Array.isArray(key)) {
              key = [key];
          }
-         let value2;
+         
          const mgetArgs = [];
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
