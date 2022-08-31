@@ -373,8 +373,10 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
+     let valor;
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
-         await callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+        return  result.map(v => removePrefix(this.prefix, scope, v))
+         //await callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
      }).catch(err => {
         await callback(err);
      });
