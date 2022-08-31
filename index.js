@@ -226,7 +226,7 @@
      });
  };
  
- Redis.prototype.get = function (scope, key, callback) {
+ Redis.prototype.get = async function (scope, key, callback) {
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
@@ -238,7 +238,7 @@
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
-         this.client.MGET(...mgetArgs, (err, replies) => {
+         await this.client.MGET(...mgetArgs, (err, replies) => {
              if (err) {
                  callback(err);
              } else {
