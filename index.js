@@ -266,8 +266,9 @@
                      }
                      results.push(value);
                  }
-                 callback(null, ...results);
                  return results
+                 callback(null, ...results);
+                 
                  
              }
          });
