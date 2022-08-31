@@ -230,7 +230,6 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
-     console.log(callback)
      callback = retorno;
      var value2 = [];
      try {
@@ -271,7 +270,7 @@
                      results.push(value);
                  }
 
-                 console.log(results)
+                 //console.log(results)
 
                  //value2 = results
                  
@@ -289,6 +288,7 @@
      {
         console.log(v2)
         value2 = v2; 
+        return v2
      }
      
      return value2
