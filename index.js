@@ -272,7 +272,7 @@
 
                  value2 = results
                  
-                 callback(null, ...results);
+                 //callback(null, ...results);
                  
                  
              }
@@ -281,7 +281,8 @@
          callback(err);
          return;
      }
-
+     
+     console.log(value2)
      return value2
  };
  
