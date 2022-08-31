@@ -230,6 +230,8 @@
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
+     console.log(callback)
+     callback = retorno;
      var value2 = [];
      try {
          if (!Array.isArray(key)) {
@@ -281,6 +283,11 @@
      } catch (err) {
          callback(err);
          return;
+     }
+
+     function retorno (v1,v2)
+     {
+        v2 = value2
      }
      
      console.log(value2)
