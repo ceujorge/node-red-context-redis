@@ -240,7 +240,10 @@
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
          this.client.MGET(...mgetArgs, (err, replies) => {
              if (err) {
-                 callback(err);
+                if(typeof callback !== 'function')
+                    return err
+                else
+                    callback(err);
              } else {
                  let results = [];
                  let data = {};
@@ -266,14 +269,21 @@
                      }
                      results.push(value);
                  }
-                 return results
-                 callback(null, ...results);
+
+                if(typeof callback !== 'function')
+                    return results
+                else
+                    callback(results);
                  
                  
              }
          });
      } catch (err) {
-         callback(err);
+        if(typeof callback !== 'function')
+            return err
+        else
+            callback(err);
+
          return;
      }
  };
