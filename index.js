@@ -286,7 +286,7 @@
         valor2 = v2
     }
 
-    while(valor2 === undefined && tipo === "async") {
+    while(valor2 === undefined && tipo === "sync") {
         require('deasync').sleep(50);
     }
     return valor2
