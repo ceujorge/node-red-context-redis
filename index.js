@@ -227,9 +227,7 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
-    console.log(typeof callback)
      if (typeof callback !== 'function') {
-        console.log(typeof callback)
         callback = retorno;;
      }
     
@@ -272,9 +270,7 @@
                      results.push(value);
                  }
                  
-                callback(null, ...results);
-                return;
-                 
+                callback(null, ...results);           
              }
          });
      } catch (err) {
@@ -287,7 +283,7 @@
         valor2 = v2
     }
 
-    while(valor2 === undefined) {
+    while(valor2 === undefined && typeof callback !== 'function') {
         require('deasync').sleep(50);
     }
     return valor2
