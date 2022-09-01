@@ -47,7 +47,7 @@
  * If 'prefix' in above options is set, the key will be prefixed with it additionally.
  */
 
- const {redis} = require('redis');
+ import { redis } from 'redis';
  // Require @node-red/util loaded in the Node-RED runtime.
  const util = process.env.NODE_RED_HOME ?
      require(require.resolve('@node-red/util', { paths: [process.env.NODE_RED_HOME] })).util :
