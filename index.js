@@ -228,7 +228,7 @@
  
  Redis.prototype.get = function (scope, key, callback) {
 
-    const tipo = "async";
+    var tipo = "async";
      if (typeof callback !== 'function') {
         callback = retorno;;
         tipo = "sync";
