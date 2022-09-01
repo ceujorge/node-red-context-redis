@@ -389,9 +389,10 @@
  
  Redis.prototype.keys = function (scope, callback) {
     var tipo = "async";
+    var valor2;
      if (typeof callback !== 'function') {
         callback = retorno;
-        tipo = sync;
+        tipo = "sync";
      }
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
          callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
