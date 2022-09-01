@@ -15,11 +15,12 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@node-red/util": "0.20.0-beta.2",
+    "deasync": "^0.1.28",
     "json-stringify-safe": "^5.0.1",
-    "redis": "^2.8.0",
-    "deasync":"^0.1.28"
+    "redis": "^2.8.0"
   },
   "devDependencies": {
+    "@types/redis": "^4.0.11",
     "mocha": "^5.2.0",
     "nyc": "^10.0.0",
     "should": "^13.2.1",
