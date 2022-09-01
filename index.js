@@ -227,8 +227,11 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
+
+    const tipo = "async";
      if (typeof callback !== 'function') {
         callback = retorno;;
+        tipo = "sync";
      }
     
      var valor2;
@@ -283,7 +286,7 @@
         valor2 = v2
     }
 
-    while(valor2 === undefined && typeof callback !== 'function') {
+    while(valor2 === undefined && tipo === "async") {
         require('deasync').sleep(50);
     }
     return valor2
