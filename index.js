@@ -396,6 +396,7 @@
      }
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
          callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
+         console.log(result.map(v => removePrefix(this.prefix, scope, v)))
      }).catch(err => {
         callback(err);
      });
