@@ -47,7 +47,7 @@
  * If 'prefix' in above options is set, the key will be prefixed with it additionally.
  */
 
- import { redis } from 'redis';
+ const redis = require('redis');
  // Require @node-red/util loaded in the Node-RED runtime.
  const util = process.env.NODE_RED_HOME ?
      require(require.resolve('@node-red/util', { paths: [process.env.NODE_RED_HOME] })).util :
@@ -227,7 +227,9 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
+    console.log(typeof callback)
      if (typeof callback !== 'function') {
+        console.log(typeof callback)
         callback = retorno;;
      }
     
@@ -241,7 +243,7 @@
          // Filter duplicate keys in order to reduce response data
          const rootKeys = key.map(key => util.normalisePropertyExpression(key)[0]).filter((key, index, self) => self.indexOf(key) === index);
          rootKeys.forEach(key => mgetArgs.push(addPrefix(this.prefix, scope, key)));
-         await this.client.MGET(...mgetArgs, (err, replies) => {
+         this.client.MGET(...mgetArgs, (err, replies) => {
              if (err) {
                  callback(err);
              } else {
@@ -286,7 +288,7 @@
     }
 
     while(valor2 === undefined) {
-        require('deasync').sleep(5);
+        require('deasync').sleep(50);
     }
     return valor2
 
