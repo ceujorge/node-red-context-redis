@@ -234,7 +234,7 @@
         tipo = "sync";
      }
     
-     var valor2;
+     var valor2 = null;
      try {
          if (!Array.isArray(key)) {
              key = [key];
@@ -283,12 +283,10 @@
 
     function retorno (v1,v2)
     {
-        console.log("results")
-        console.log(v2)
         valor2 = v2
     }
 
-    while(valor2 === undefined && tipo === "sync") {
+    while(valor2 === null && tipo === "sync") {
         require('deasync').sleep(50);
     }
     return valor2
