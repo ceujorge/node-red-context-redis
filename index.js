@@ -272,9 +272,6 @@
                      }
                      results.push(value);
                  }
-
-                 console.log("results")
-                 console.log( ...results)
                  
                 callback(null, ...results);           
              }
@@ -286,6 +283,8 @@
 
     function retorno (v1,v2)
     {
+        console.log("results")
+        console.log(v2)
         valor2 = v2
     }
 
