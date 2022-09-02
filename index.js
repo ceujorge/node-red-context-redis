@@ -287,7 +287,7 @@
     }
 
     while(valor2 === null && tipo === "sync") {
-        require('deasync').sleep(50);
+        require('deasync').sleep(5);
     }
     return valor2
 
