@@ -254,7 +254,7 @@
                  let value;
                  for (let i = 0; i < rootKeys.length; i++) {
                      try {
-                        console.log(replies)
+                        console.log("nada")
                          if (replies[i]) {
                              data[rootKeys[i]] = JSON.parse(replies[i]);
                          }
