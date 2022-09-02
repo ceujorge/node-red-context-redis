@@ -254,7 +254,6 @@
                  for (let i = 0; i < rootKeys.length; i++) {
                      try {
                          if (replies[i]) {
-                            console.log(replies[i])
                             data[rootKeys[i]] = JSON.parse(replies[i]);
                          }
                      } catch (err) {
@@ -273,6 +272,9 @@
                      }
                      results.push(value);
                  }
+
+                 console.log("results")
+                 console.log(results)
                  
                 callback(null, ...results);           
              }
