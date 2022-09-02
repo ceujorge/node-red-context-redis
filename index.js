@@ -389,14 +389,13 @@
  
  Redis.prototype.keys = function (scope, callback) {
     var tipo = "async";
-    var valor2;
+    var valor2 = null;
      if (typeof callback !== 'function') {
         callback = retorno;
         tipo = "sync";
      }
      scan(this.client, addPrefix(this.prefix, scope, '*')).then(result => {
          callback(null, result.map(v => removePrefix(this.prefix, scope, v)));
-         console.log(result.map(v => removePrefix(this.prefix, scope, v)))
      }).catch(err => {
         callback(err);
      });
@@ -406,7 +405,7 @@
         valor2 = v2
     }
 
-    while(valor2 === undefined && tipo === "sync") {
+    while(valor2 === null && tipo === "sync") {
         require('deasync').sleep(50);
     }
     return valor2
