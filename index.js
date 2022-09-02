@@ -274,7 +274,7 @@
                  }
 
                  console.log("results")
-                 console.log(results)
+                 console.log( ...results)
                  
                 callback(null, ...results);           
              }
