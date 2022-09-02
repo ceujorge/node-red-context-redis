@@ -227,7 +227,6 @@
  };
  
  Redis.prototype.get = function (scope, key, callback) {
-    console.log("inicio")
 
     var tipo = "async";
      if (typeof callback !== 'function') {
@@ -254,12 +253,11 @@
                  let value;
                  for (let i = 0; i < rootKeys.length; i++) {
                      try {
-                        console.log("nada")
                          if (replies[i]) {
-                             data[rootKeys[i]] = JSON.parse(replies[i]);
+                            console.log(replies[i])
+                            data[rootKeys[i]] = JSON.parse(replies[i]);
                          }
                      } catch (err) {
-                        console.log("nada")
                          // If data is not JSON, return `undefined`
                          break;
                      }
