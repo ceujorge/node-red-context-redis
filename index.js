@@ -228,6 +228,8 @@
  
  Redis.prototype.get = function (scope, key, callback) {
 
+    console.log("entrou get")
+
     var tipo = "async";
      if (typeof callback !== 'function') {
         callback = retorno;;
@@ -294,6 +296,8 @@
  };
  
  Redis.prototype.set = function (scope, key, value, callback) {
+    console.log("entrou set")
+
      if (callback && typeof callback !== 'function') {
          throw new Error('Callback must be a function');
      }
@@ -388,6 +392,7 @@
  };
  
  Redis.prototype.keys = function (scope, callback) {
+    console.log("entrou keys")
     var tipo = "async";
     var valor2 = null;
      if (typeof callback !== 'function') {
@@ -430,6 +435,7 @@
  };
  
  Redis.prototype.clean = function (_activeNodes) {
+    console.log("entrou clean")
      this.knownCircularRefs = {};
       return new Promise((resolve, reject) => {
          this.client.KEYS((this.prefix || '') + '*', (err, res) => {
