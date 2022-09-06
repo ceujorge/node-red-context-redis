@@ -184,6 +184,7 @@
  }
  
  Redis.prototype.open = function () {
+    console.log("entrou open")
      const promises = [];
      this.client = redis.createClient(this.port, this.host, this.options);
      this.client.on('error', function (err) {
@@ -215,6 +216,7 @@
  };
  
  Redis.prototype.close = function () {
+    console.log("entrou close")
      return new Promise((resolve, reject) => {
          this.client.QUIT((err) => {
              if (err) {
