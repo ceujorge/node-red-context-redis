@@ -170,6 +170,7 @@
  }
  
  function Redis(config) {
+    console.log("entrou construtor")
      this.host = config.host || '127.0.0.1';
      this.port = config.port || 6379;
      this.prefix = config.prefix;
